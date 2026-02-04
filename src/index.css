@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #350078;
+  --color-primary-light: rgba(53, 0, 120, 0.05);
+  --color-background-light: #ffffff;
+  --color-background-dark: #0f0f12;
+
+  --font-heading: "Marcellus", serif;
+  --font-body: "Alexandria", sans-serif;
+  --font-display: "Marcellus", serif;
+  --font-sans: "Alexandria", sans-serif;
+
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Utilities */
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Arabic Font Overrides */
+:root[dir="rtl"],
+[dir="rtl"] {
+  --font-heading: "Alexandria", sans-serif;
+  --font-display: "Alexandria", sans-serif;
+  font-family: "Alexandria", sans-serif;
+}
