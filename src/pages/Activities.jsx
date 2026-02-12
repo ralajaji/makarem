@@ -47,13 +47,38 @@ const Activities = () => {
 
     // Form
     const [phone, setPhone] = useState('');
-    const [prefTime, setPrefTime] = useState('');
+    const [selectedDate, setSelectedDate] = useState('today'); // 'today' | 'tomorrow'
+    const [selectedTime, setSelectedTime] = useState(null);
+
+    // Generate time slots (10:00 AM to 10:00 PM)
+    const timeSlots = [];
+    for (let i = 10; i <= 22; i++) {
+        timeSlots.push(`${i}:00`);
+        if (i !== 22) timeSlots.push(`${i}:30`);
+    }
+
+    // Mock booked slots
+    const isSlotBooked = (time) => {
+        const booked = ['12:00', '14:30', '18:00', '20:30'];
+        return booked.includes(time);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
 
-        const preferredTime = formatSupabaseDate(prefTime);
+        if (!selectedTime) {
+            alert(language === 'ar' ? 'يرجى اختيار الوقت' : 'Please select a time');
+            setIsLoading(false);
+            return;
+        }
+
+        const dateObj = new Date();
+        if (selectedDate === 'tomorrow') {
+            dateObj.setDate(dateObj.getDate() + 1);
+        }
+
+        const preferredTime = formatSupabaseDate(selectedTime, dateObj);
 
         try {
             const { error } = await supabase
@@ -145,16 +170,48 @@ const Activities = () => {
                                         </div>
                                     </div>
 
-                                    <div className="space-y-1">
-                                        <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">{t.activities.prefTime} ({t.common.optional})</label>
-                                        <div className="relative">
-                                            <span className={`absolute ${language === 'ar' ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium material-icons-outlined`}>schedule</span>
-                                            <input
-                                                value={prefTime}
-                                                onChange={(e) => setPrefTime(e.target.value)}
-                                                className={`w-full ${language === 'ar' ? 'pr-12 pl-4' : 'pl-12 pr-4'} py-4 bg-slate-50 border-none rounded-2xl focus:ring-2 focus:ring-primary/20 text-lg placeholder:text-slate-300 transition-all outline-none`}
-                                                type="time"
-                                            />
+                                    <div className="space-y-3">
+                                        <label className="text-xs font-semibold uppercase tracking-wider text-slate-400 ml-1">{t.activities.prefTime}</label>
+
+                                        {/* Date Selection */}
+                                        <div className="grid grid-cols-2 gap-3 mb-4">
+                                            <button
+                                                type="button"
+                                                onClick={() => setSelectedDate('today')}
+                                                className={`py-3 rounded-xl text-sm font-semibold transition-all border ${selectedDate === 'today' ? 'bg-primary text-white border-primary shadow-md' : 'bg-white text-slate-600 border-slate-200 hover:border-primary/50'}`}
+                                            >
+                                                {language === 'ar' ? 'اليوم' : 'Today'}
+                                            </button>
+                                            <button
+                                                type="button"
+                                                onClick={() => setSelectedDate('tomorrow')}
+                                                className={`py-3 rounded-xl text-sm font-semibold transition-all border ${selectedDate === 'tomorrow' ? 'bg-primary text-white border-primary shadow-md' : 'bg-white text-slate-600 border-slate-200 hover:border-primary/50'}`}
+                                            >
+                                                {language === 'ar' ? 'غداً' : 'Tomorrow'}
+                                            </button>
+                                        </div>
+
+                                        {/* Time Slots */}
+                                        <div className="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-48 overflow-y-auto pr-1 custom-scrollbar">
+                                            {timeSlots.map(time => {
+                                                const booked = isSlotBooked(time);
+                                                return (
+                                                    <button
+                                                        key={time}
+                                                        type="button"
+                                                        disabled={booked}
+                                                        onClick={() => setSelectedTime(time)}
+                                                        className={`py-2 rounded-lg text-xs font-medium transition-all ${booked
+                                                                ? 'bg-slate-100 text-slate-300 cursor-not-allowed decoration-slice'
+                                                                : selectedTime === time
+                                                                    ? 'bg-primary text-white shadow-md transform scale-105'
+                                                                    : 'bg-white border border-slate-200 text-slate-600 hover:border-primary hover:text-primary'
+                                                            }`}
+                                                    >
+                                                        {time}
+                                                    </button>
+                                                );
+                                            })}
                                         </div>
                                     </div>
 

@@ -147,7 +147,7 @@ export const translations = {
         restaurants: {
             title: "المطاعم الشريكة",
             subtitle: "تجارب طعام مختارة تصل مباشرة إلى جناحك.",
-            orderNow: "اطلب الآن",
+            orderNow: "احجز الآن",
             connectTitle: "اتصال بـ",
             connectSubtitle: "اتصال مباشر بالكونسيرج"
         },

@@ -124,7 +124,7 @@ const Cars = () => {
                             <div>
                                 <label className="block text-xs font-medium text-gray-700 mb-2 uppercase tracking-wide">{t.common.contactPhone} <span className="text-red-500">*</span></label>
                                 <div className="relative">
-                                    <span className="absolute left-4 top-1/2 -translate-y-1/2 material-icons-outlined text-gray-400">phone</span>
+                                    <span className={`absolute ${language === 'ar' ? 'end-4' : 'start-4'} top-1/2 -translate-y-1/2 material-icons-outlined text-gray-400`}>phone</span>
                                     <input
                                         required
                                         value={phone}
@@ -137,11 +137,11 @@ const Cars = () => {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="space-y-4">
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-700 mb-2 uppercase tracking-wide">{t.cars.pickupTime} ({t.common.optional})</label>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">{t.cars.pickupTime} ({t.common.optional})</label>
                                     <div className="relative">
-                                        <span className={`absolute ${language === 'ar' ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 material-icons-outlined text-gray-400`}>schedule</span>
+                                        <span className={`absolute ${language === 'ar' ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 material-icons-outlined text-gray-400 text-xl`}>schedule</span>
                                         <input
                                             value={time}
                                             onChange={(e) => setTime(e.target.value)}
@@ -152,15 +152,14 @@ const Cars = () => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs font-medium text-gray-700 mb-2 uppercase tracking-wide">{t.common.notes} ({t.common.optional})</label>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">{t.common.notes} ({t.common.optional})</label>
                                     <div className="relative">
-                                        <span className={`absolute ${language === 'ar' ? 'right-4' : 'left-4'} top-1/2 -translate-y-1/2 material-icons-outlined text-gray-400`}>edit_note</span>
-                                        <input
+                                        <span className={`absolute ${language === 'ar' ? 'right-4' : 'left-4'} top-4 material-icons-outlined text-gray-400 text-xl`}>edit_note</span>
+                                        <textarea
                                             value={notes}
                                             onChange={(e) => setNotes(e.target.value)}
-                                            className={`w-full ${language === 'ar' ? 'pr-12 pl-4' : 'pl-12 pr-4'} py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-gray-900`}
+                                            className={`w-full ${language === 'ar' ? 'pr-12 pl-4' : 'pl-12 pr-4'} py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none text-gray-900 min-h-[100px] resize-none`}
                                             placeholder="..."
-                                            type="text"
                                         />
                                     </div>
                                 </div>
