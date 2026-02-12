@@ -26,7 +26,7 @@ function App() {
       </Route>
 
       {/* Fallback */}
-      <Route path="*" element={<Navigate to="/admin" replace />} />
+      <Route path="*" element={<Navigate to="/3140" replace />} />
     </Routes>
   );
 }
