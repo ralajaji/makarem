@@ -85,6 +85,19 @@ export const translations = {
                 activity: "Activity",
                 restaurant: "Restaurant"
             }
+        },
+        chatbot: {
+            title: "Guest Services",
+            online: "Online",
+            greeting: "Welcome! How can I help you today? I can assist with pillows, blankets, forks, or water.",
+            placeholder: "Type a message...",
+            orderCreated: "Order created and the housekeeper is coming in 5 minutes.",
+            howManyPillows: "How many pillows would you like?",
+            fallback: "I can help you with housekeeping items like pillows, blankets, forks, or water.",
+            newRequest: "New Request",
+            optionOne: "1",
+            optionTwo: "2",
+            toggleChat: "Toggle Chat"
         }
     },
     ar: {
@@ -173,6 +186,19 @@ export const translations = {
                 activity: "نشاط",
                 restaurant: "مطعم"
             }
+        },
+        chatbot: {
+            title: "خدمة الضيوف",
+            online: "متصل",
+            greeting: "مرحباً! كيف يمكنني مساعدتك اليوم؟ يمكنني المساعدة في طلب المخدات، البطانيات، الشوك، أو المياه.",
+            placeholder: "اكتب رسالة...",
+            orderCreated: "تم إنشاء الطلب وسيكون موظف التدبير المنزلي عندك خلال 5 دقائق.",
+            howManyPillows: "كم عدد المخدات التي تريدها؟",
+            fallback: "يمكنني مساعدتك في طلب أغراض التدبير المنزلي مثل المخدات، البطانيات، الشوك، أو المياه.",
+            newRequest: "طلب جديد",
+            optionOne: "١",
+            optionTwo: "٢",
+            toggleChat: "فتح المحادثة"
         }
     }
 };

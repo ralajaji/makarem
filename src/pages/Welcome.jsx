@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { translations } from '../lib/translations';
+import Chatbot from '../components/Chatbot';
 
 const ServiceCard = ({ icon, title, to }) => (
     <Link
@@ -43,6 +44,8 @@ const Welcome = () => {
                     {t.welcome.footer}
                 </p>
             </div>
+
+            <Chatbot />
         </div>
     );
 };
